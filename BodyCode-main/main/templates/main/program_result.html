@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BodyCode — Твоя программа</title>
+  <link rel="stylesheet" href="{% static 'main/styles.css' %}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="{% url 'main:quiz' %}#hero" class="logo">
+        <span class="logo__icon">⬡</span>
+        <span class="logo__text">Body<span class="accent">Code</span></span>
+      </a>
+      <a href="{% url 'main:quiz_form' %}" class="btn btn--outline">Новый квиз</a>
+    </div>
+  </header>
+
+  <section class="dashboard dashboard--result" id="dashboard" style="padding-top: 8rem;">
+    <div class="container">
+      <div class="section-label">Результат</div>
+      <h2 class="section-title">Твоя программа</h2>
+      <p class="section-sub">План на неделю, объём и акценты по ответам квиза</p>
+
+      <div class="dashboard__layout">
+        <div class="dash-col dash-col--main">
+          {% for day in program.exercises_by_day %}
+            <div class="dash-card dash-card--workout dash-result-day">
+              <div class="dash-card__header">
+                <span class="dash-card__label">{{ day.day }}</span>
+                <span class="dash-card__badge">{{ day.focus }}</span>
+              </div>
+              <h3 class="dash-card__title">Упражнения</h3>
+              <div class="workout-list">
+                {% for exercise in day.exercises %}
+                  <div class="workout-item">
+                    <span class="workout-item__name">{{ exercise }}</span>
+                    <span class="workout-item__sets">{{ program.sets }}× {{ program.reps }}</span>
+                  </div>
+                {% empty %}
+                  <div class="workout-item">
+                    <span class="workout-item__name">Нет подходящих упражнений в шаблоне — см. рекомендации</span>
+                    <span class="workout-item__sets">—</span>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="dash-col dash-col--side">
+          <div class="dash-card dash-card--calories dash-card--result-meta">
+            <div class="dash-card__header">
+              <span class="dash-card__label">Сводка</span>
+              <span class="dash-card__badge dash-card__badge--orange">ИМТ {{ program.bmi }}</span>
+            </div>
+            <h3 class="dash-card__title">{{ program.program_type }}</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 14px;">
+              Уровень: <strong style="color: var(--text);">{{ program.level }}</strong>
+            </p>
+            <div class="workout-list">
+              <div class="workout-item">
+                <span class="workout-item__name">Подходы × повторения</span>
+                <span class="workout-item__sets">{{ program.sets }} / {{ program.reps }}</span>
+              </div>
+              <div class="workout-item">
+                <span class="workout-item__name">Кардио</span>
+                <span class="workout-item__sets" style="max-width: 62%; text-align: right; white-space: normal;">{{ program.cardio }}</span>
+              </div>
+            </div>
+            {% if program.focus.weakest %}
+              <div class="focus-tags">
+                {% for z in program.focus.weakest|slice:":8" %}
+                  <span class="focus-tag focus-tag--weak">{{ z }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="dash-card dash-card--progress">
+            <div class="dash-card__header">
+              <span class="dash-card__label">Рекомендации</span>
+            </div>
+            <ul class="recommendations-list">
+              {% for rec in program.recommendations %}
+                <li>{{ rec }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 28px;">
+        <a href="{% url 'main:quiz_form' %}" class="btn btn--ghost btn--lg">Заполнить квиз заново</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="{% url 'main:quiz' %}#hero" class="logo">
+          <span class="logo__icon">⬡</span>
+          <span class="logo__text">Body<span class="accent">Code</span></span>
+        </a>
+        <p class="footer__desc">Персональные программы тренировок по данным квиза.</p>
+      </div>
+      <div class="footer__col">
+        <a href="{% url 'main:quiz_form' %}" class="footer__link">Открыть анкету</a>
+        <a href="{% url 'main:quiz' %}#faq" class="footer__link">FAQ</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span>© {% now "Y" %} BodyCode</span>
+        <span>Учебный референс</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{% static 'main/app.js' %}"></script>
+</body>
+</html>

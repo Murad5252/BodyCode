@@ -1,0 +1,216 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BodyCode — Анкета для программы</title>
+  <link rel="stylesheet" href="{% static 'main/styles.css' %}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="{% url 'main:quiz' %}#hero" class="logo">
+        <span class="logo__icon">⬡</span>
+        <span class="logo__text">Body<span class="accent">Code</span></span>
+      </a>
+      <a href="{% url 'main:quiz' %}#how" class="btn btn--outline">На главную</a>
+    </div>
+  </header>
+
+  <section class="quiz" id="quiz" style="padding-top: 8rem;">
+    <div class="quiz__bg-glow"></div>
+    <div class="container">
+      <div class="section-label">Создать программу</div>
+      <h2 class="section-title">Расскажи о себе</h2>
+      <p class="section-sub">Заполни данные: пол, возраст, вес, рост, обхваты, цель и ограничения</p>
+
+      <form method="post" action="{% url 'main:program_result' %}" id="quiz-form" class="quiz__form" novalidate>
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+          <div class="non-field-errors">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        <div class="quiz__block">
+          <div class="quiz__step-label">01 / Пол</div>
+          <div class="gender-select">
+            {% for radio in form.gender %}
+              <label class="gender-option">
+                {{ radio.tag }}
+                <div class="gender-option__card">
+                  <span class="gender-option__icon">{% if forloop.first %}♂{% else %}♀{% endif %}</span>
+                  <span>{{ radio.choice_label }}</span>
+                </div>
+              </label>
+            {% endfor %}
+          </div>
+          {{ form.gender.errors }}
+        </div>
+
+        <div class="quiz__block">
+          <div class="quiz__step-label">02 / Возраст</div>
+          <div class="param-input">
+            <label class="param-input__label" for="{{ form.age.id_for_label }}">{{ form.age.label }}</label>
+            <div class="param-input__field">
+              <span class="param-input__unit">лет</span>
+              {{ form.age }}
+            </div>
+          </div>
+          {{ form.age.errors }}
+        </div>
+
+        <div class="quiz__block">
+          <div class="quiz__step-label">03 / Вес и рост</div>
+          <div class="params-row">
+            <div class="param-input">
+              <label class="param-input__label" for="{{ form.weight.id_for_label }}">{{ form.weight.label }}</label>
+              <div class="param-input__field">
+                <span class="param-input__unit">кг</span>
+                {{ form.weight }}
+              </div>
+              {{ form.weight.errors }}
+            </div>
+            <div class="param-input">
+              <label class="param-input__label" for="{{ form.height.id_for_label }}">{{ form.height.label }}</label>
+              <div class="param-input__field">
+                <span class="param-input__unit">см</span>
+                {{ form.height }}
+              </div>
+              {{ form.height.errors }}
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz__block">
+          <div class="quiz__step-label">04 / Обхваты</div>
+          <div class="measure-grid">
+            <div class="param-input">
+              <label class="param-input__label" for="{{ form.chest.id_for_label }}">{{ form.chest.label }}</label>
+              <div class="param-input__field"><span class="param-input__unit">см</span>{{ form.chest }}</div>
+              {{ form.chest.errors }}
+            </div>
+            <div class="param-input">
+              <label class="param-input__label" for="{{ form.waist.id_for_label }}">{{ form.waist.label }}</label>
+              <div class="param-input__field"><span class="param-input__unit">см</span>{{ form.waist }}</div>
+              {{ form.waist.errors }}
+            </div>
+            <div class="param-input">
+              <label class="param-input__label" for="{{ form.hips.id_for_label }}">{{ form.hips.label }}</label>
+              <div class="param-input__field"><span class="param-input__unit">см</span>{{ form.hips }}</div>
+              {{ form.hips.errors }}
+            </div>
+            <div class="param-input">
+              <label class="param-input__label" for="{{ form.forearm.id_for_label }}">{{ form.forearm.label }}</label>
+              <div class="param-input__field"><span class="param-input__unit">см</span>{{ form.forearm }}</div>
+              {{ form.forearm.errors }}
+            </div>
+            <div class="param-input">
+              <label class="param-input__label" for="{{ form.calves.id_for_label }}">{{ form.calves.label }}</label>
+              <div class="param-input__field"><span class="param-input__unit">см</span>{{ form.calves }}</div>
+              {{ form.calves.errors }}
+            </div>
+            <div class="param-input">
+              <label class="param-input__label" for="{{ form.biceps.id_for_label }}">{{ form.biceps.label }}</label>
+              <div class="param-input__field"><span class="param-input__unit">см</span>{{ form.biceps }}</div>
+              {{ form.biceps.errors }}
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz__block">
+          <div class="quiz__step-label">05 / Сейчас тренируешься?</div>
+          <div class="gender-select training-yesno">
+            {% for radio in form.training_now %}
+              <label class="gender-option">
+                {{ radio.tag }}
+                <div class="gender-option__card">
+                  <span class="gender-option__icon">{% if forloop.first %}✓{% else %}—{% endif %}</span>
+                  <span>{{ radio.choice_label }}</span>
+                </div>
+              </label>
+            {% endfor %}
+          </div>
+          {{ form.training_now.errors }}
+        </div>
+
+        <div class="quiz__block">
+          <div class="quiz__step-label" id="period-step-label">06 / Период</div>
+          <p class="section-sub" style="margin-bottom: 1rem;">Уточни длительность тренировок подряд или перерыва</p>
+          <div class="age-select">
+            {% for radio in form.training_period %}
+              <label class="age-option">{{ radio.tag }}<span>{{ radio.choice_label }}</span></label>
+            {% endfor %}
+          </div>
+          {{ form.training_period.errors }}
+        </div>
+
+        <div class="quiz__block">
+          <div class="quiz__step-label">07 / Цель</div>
+          <div class="goals-grid">
+            {% for radio in form.goal %}
+              <label class="goal-option {% if forloop.last %}goal-option--maintenance{% endif %}">
+                {{ radio.tag }}
+                <div class="goal-option__card">
+                  <span class="goal-option__icon">
+                    {% if forloop.counter == 1 %}▼{% elif forloop.counter == 2 %}▲{% else %}◈{% endif %}
+                  </span>
+                  <span class="goal-option__title">{{ radio.choice_label }}</span>
+                  <span class="goal-option__sub">
+                    {% if forloop.counter == 1 %}Дефицит и кардио-акценты{% elif forloop.counter == 2 %}Силовой объём и прогрессия{% else %}Стабильность и самочувствие{% endif %}
+                  </span>
+                </div>
+              </label>
+            {% endfor %}
+          </div>
+          {{ form.goal.errors }}
+        </div>
+
+        <div class="quiz__block">
+          <div class="quiz__step-label">08 / Противопоказания</div>
+          <p class="section-sub" style="margin-bottom: 1rem;">Можно не отмечать, если ограничений нет</p>
+          <div class="contra-grid">
+            {% for box in form.contraindications %}
+              <label class="contra-option">
+                {{ box.tag }}
+                <span>{{ box.choice_label }}</span>
+              </label>
+            {% endfor %}
+          </div>
+          {{ form.contraindications.errors }}
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--lg quiz__submit">Создать мою программу →</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="{% url 'main:quiz' %}#hero" class="logo">
+          <span class="logo__icon">⬡</span>
+          <span class="logo__text">Body<span class="accent">Code</span></span>
+        </a>
+        <p class="footer__desc">Персональные программы тренировок по данным квиза.</p>
+      </div>
+      <div class="footer__col">
+        <a href="{% url 'main:quiz_form' %}" class="footer__link">Открыть анкету</a>
+        <a href="{% url 'main:quiz' %}#faq" class="footer__link">FAQ</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span>© {% now "Y" %} BodyCode</span>
+        <span>Учебный референс</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{% static 'main/app.js' %}"></script>
+</body>
+</html>

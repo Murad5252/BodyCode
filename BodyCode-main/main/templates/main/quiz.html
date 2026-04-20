@@ -1,0 +1,265 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BodyCode — Научный подход к твоему телу</title>
+  <link rel="stylesheet" href="{% static 'main/styles.css' %}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="{% url 'main:quiz' %}#hero" class="logo">
+        <span class="logo__icon">⬡</span>
+        <span class="logo__text">Body<span class="accent">Code</span></span>
+      </a>
+
+      <nav class="nav">
+        <a href="#how" class="nav__link">Как это работает</a>
+        <a href="#benefits" class="nav__link">Преимущества</a>
+        <a href="#faq" class="nav__link">FAQ</a>
+      </nav>
+
+      <a href="#start-cta" class="btn btn--outline">Начать</a>
+
+      <input type="checkbox" id="menu-toggle" class="menu-toggle-input" />
+      <label for="menu-toggle" class="menu-burger">
+        <span></span><span></span><span></span>
+      </label>
+      <div class="mobile-nav">
+        <a href="#how" class="nav__link">Как это работает</a>
+        <a href="#benefits" class="nav__link">Преимущества</a>
+        <a href="#faq" class="nav__link">FAQ</a>
+        <a href="#start-cta" class="btn btn--primary">Начать</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="hero__bg-glow hero__bg-glow--1"></div>
+    <div class="hero__bg-glow hero__bg-glow--2"></div>
+    <div class="hero__grid-lines"></div>
+
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <div class="hero__badge">
+          <span class="badge-dot"></span>
+          Персонализация · Научный подход
+        </div>
+        <h1 class="hero__title">
+          Научный<br />
+          <span class="title-outline">подход</span><br />
+          к твоему телу
+        </h1>
+        <p class="hero__sub">
+          Персональная программа тренировок по результатам квиза:<br />
+          уровень, сплит, объём и акценты под твои данные
+        </p>
+        <div class="hero__actions">
+          <a href="#start-cta" id="hero-create-program-btn" class="btn btn--primary btn--lg">Создать программу</a>
+          <a href="#how" id="hero-how-it-works-btn" class="btn btn--ghost btn--lg">Как это работает</a>
+        </div>
+        <div class="hero__stats">
+          <div class="stat">
+            <span class="stat__num">Квиз</span>
+            <span class="stat__label">анкета</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat__num">План</span>
+            <span class="stat__label">на неделю</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat__num">Без</span>
+            <span class="stat__label">кабинета</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <div class="body-figure">
+          <div class="body-figure__glow"></div>
+          <svg class="body-svg" viewBox="0 0 220 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="110" cy="48" rx="32" ry="38" fill="url(#bodyGrad)" opacity="0.9"/>
+            <rect x="98" y="82" width="24" height="22" rx="8" fill="url(#bodyGrad)" opacity="0.85"/>
+            <path d="M40 120 Q70 100 110 104 Q150 100 180 120 L172 190 Q150 210 110 212 Q70 210 48 190 Z" fill="url(#bodyGrad)" opacity="0.9"/>
+            <path d="M42 122 Q18 150 14 200 Q12 230 20 252 Q28 260 36 252 Q44 230 46 200 Q50 170 56 140 Z" fill="url(#bodyGrad)" opacity="0.75"/>
+            <path d="M178 122 Q202 150 206 200 Q208 230 200 252 Q192 260 184 252 Q176 230 174 200 Q170 170 164 140 Z" fill="url(#bodyGrad)" opacity="0.75"/>
+            <path d="M68 208 Q90 218 110 218 Q130 218 152 208 L148 290 Q130 300 110 300 Q90 300 72 290 Z" fill="url(#bodyGrad)" opacity="0.85"/>
+            <path d="M62 286 Q90 304 110 304 Q130 304 158 286 L162 330 Q140 348 110 350 Q80 348 58 330 Z" fill="url(#bodyGrad)" opacity="0.9"/>
+            <path d="M68 344 Q58 390 56 430 Q54 460 68 468 Q82 472 88 462 Q92 440 94 400 Q96 368 100 346 Z" fill="url(#bodyGrad)" opacity="0.8"/>
+            <path d="M152 344 Q162 390 164 430 Q166 460 152 468 Q138 472 132 462 Q128 440 126 400 Q124 368 120 346 Z" fill="url(#bodyGrad)" opacity="0.8"/>
+            <path d="M80 130 Q95 145 110 148 Q125 145 140 130" stroke="#ff5a1f" stroke-width="1.5" stroke-opacity="0.6" fill="none"/>
+            <path d="M75 150 Q90 162 110 164 Q130 162 145 150" stroke="#ff5a1f" stroke-width="1" stroke-opacity="0.4" fill="none"/>
+            <line x1="110" y1="218" x2="110" y2="298" stroke="#ff5a1f" stroke-width="1" stroke-opacity="0.5"/>
+            <line x1="90" y1="235" x2="130" y2="235" stroke="#ff5a1f" stroke-width="1" stroke-opacity="0.4"/>
+            <line x1="88" y1="255" x2="132" y2="255" stroke="#ff5a1f" stroke-width="1" stroke-opacity="0.4"/>
+            <line x1="88" y1="275" x2="132" y2="275" stroke="#ff5a1f" stroke-width="1" stroke-opacity="0.35"/>
+            <defs>
+              <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#2a2a2a"/>
+                <stop offset="50%" stop-color="#1e1e1e"/>
+                <stop offset="100%" stop-color="#111"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="muscle-label muscle-label--chest">Грудь</div>
+          <div class="muscle-label muscle-label--arms">Бицепс</div>
+          <div class="muscle-label muscle-label--core">Пресс</div>
+          <div class="muscle-label muscle-label--legs">Ноги</div>
+          <div class="orbit orbit--1"></div>
+          <div class="orbit orbit--2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Листай вниз</span>
+      <div class="scroll-hint__line"></div>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <div class="container">
+      <div class="section-label">Процесс</div>
+      <h2 class="section-title">Как это работает</h2>
+      <p class="section-sub">Три шага до твоей программы тренировок</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step__num">01</div>
+          <div class="step__icon">◎</div>
+          <h3 class="step__title">Расскажи о себе</h3>
+          <p class="step__text">Заполни квиз: пол, возраст, обхваты, цель и ограничения по здоровью.</p>
+          <div class="step__connector"></div>
+        </div>
+        <div class="step">
+          <div class="step__num">02</div>
+          <div class="step__icon">⟡</div>
+          <h3 class="step__title">Алгоритм анализирует</h3>
+          <p class="step__text">Считаем ИМТ, уровень и сплит. Учитываем перерывы и противопоказания.</p>
+          <div class="step__connector"></div>
+        </div>
+        <div class="step">
+          <div class="step__num">03</div>
+          <div class="step__icon">⬡</div>
+          <h3 class="step__title">Получи программу</h3>
+          <p class="step__text">План на неделю: дни, упражнения, подходы и повторения плюс рекомендации.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits" id="benefits">
+    <div class="container">
+      <div class="section-label">Преимущества</div>
+      <h2 class="section-title">Почему BodyCode</h2>
+
+      <div class="benefits__grid">
+        <div class="benefit-card benefit-card--large">
+          <div class="benefit-card__icon">◈</div>
+          <h3 class="benefit-card__title">Персонализация</h3>
+          <p class="benefit-card__text">Программа строится от твоих ответов: цель, опыт, морфология и ограничения — не один шаблон на всех.</p>
+          <div class="benefit-card__tag">Rule-based</div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-card__icon">◉</div>
+          <h3 class="benefit-card__title">Сплиты и уровни</h3>
+          <p class="benefit-card__text">Фулбади, тяни-толкай, верх-низ и другие схемы в зависимости от пола и уровня.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-card__icon">⊕</div>
+          <h3 class="benefit-card__title">Учёт здоровья</h3>
+          <p class="benefit-card__text">Противопоказания фильтруют рискованные упражнения и корректируют нагрузку.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-card__icon">⟳</div>
+          <h3 class="benefit-card__title">Масштабирование</h3>
+          <p class="benefit-card__text">Логику можно расширить базой упражнений в БД и позже AI-подбором.</p>
+        </div>
+
+        <div class="benefit-card benefit-card--accent">
+          <div class="benefit-card__big-num">BMI</div>
+          <p class="benefit-card__text">Объём и кардио корректируются по индексу массы тела и возрасту</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner" id="start-cta">
+    <div class="cta-banner__glow"></div>
+    <div class="container cta-banner__inner">
+      <h2 class="cta-banner__title">Готов изменить<br /><span class="title-outline">тело?</span></h2>
+      <p class="cta-banner__sub">Заполни квиз и получи план на неделю</p>
+      <a href="{% url 'main:quiz_form' %}" class="btn btn--primary btn--lg">Начать сейчас →</a>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-label">Вопросы</div>
+      <h2 class="section-title">FAQ</h2>
+
+      <div class="faq__grid">
+        <details class="faq-item">
+          <summary class="faq-item__q">Нужен ли личный кабинет?<span class="faq-item__arrow">↓</span></summary>
+          <p class="faq-item__a">Нет. Результат показывается сразу после отправки квиза.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q">Сколько занимает заполнение квиза?<span class="faq-item__arrow">↓</span></summary>
+          <p class="faq-item__a">Около 3–5 минут с обхватами и отметками по здоровью.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q">Учитываются ли травмы и ограничения?<span class="faq-item__arrow">↓</span></summary>
+          <p class="faq-item__a">Да. Алгоритм отфильтровывает часть упражнений при грыжах, протрузиях и учитывает варикоцеле.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q">Это финальный медицинский план?<span class="faq-item__arrow">↓</span></summary>
+          <p class="faq-item__a">Нет, это ориентир для тренировок. При болях и диагнозах согласуй нагрузку с врачом.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="{% url 'main:quiz' %}#hero" class="logo">
+          <span class="logo__icon">⬡</span>
+          <span class="logo__text">Body<span class="accent">Code</span></span>
+        </a>
+        <p class="footer__desc">Персональные программы тренировок по данным квиза.</p>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Навигация</div>
+        <a href="#how" class="footer__link">Как это работает</a>
+        <a href="#benefits" class="footer__link">Преимущества</a>
+        <a href="#faq" class="footer__link">FAQ</a>
+        <a href="#start-cta" class="footer__link">Создать программу</a>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Проект</div>
+        <span class="footer__link" style="cursor: default;">Django + SQLite</span>
+        <span class="footer__link" style="cursor: default;">HTML / CSS / JS</span>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span>© {% now "Y" %} BodyCode</span>
+        <span>Учебный референс</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{% static 'main/app.js' %}"></script>
+</body>
+</html>
