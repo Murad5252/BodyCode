@@ -20,6 +20,7 @@ syncTrainingLabel();
 if (document.getElementById("dashboard")) {
     document.getElementById("dashboard").scrollIntoView({ behavior: "smooth", block: "start" });
 }
+<<<<<<< HEAD
 
 const faqItems = document.querySelectorAll(".faq-item");
 
@@ -36,3 +37,5 @@ faqItems.forEach((item) => {
         });
     });
 });
+=======
+>>>>>>> 809a490d7a7de47afd39cd87f737de6c90971110
